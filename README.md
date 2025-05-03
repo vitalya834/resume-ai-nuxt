@@ -1,75 +1,24 @@
-# Nuxt Minimal Starter
+# 📄 Resume AI
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Ein intelligentes Tool zur Analyse und Optimierung von Lebensläufen und Stellenanzeigen mit Hilfe von Sprachmodellen (z. B. OpenAI GPT).
 
-## Setup
+## 🚀 Features
 
-Make sure to install dependencies:
+- Analyse von Lebensläufen im Vergleich zu Stellenangeboten
+- Verbesserungsvorschläge basierend auf Schlüsselwörtern
+- Mehrsprachige Unterstützung (Deutsch / Russisch)
+- Einfache Integration von API-Schlüsseln (OpenAI, Claude etc.)
+
+## 🛠️ Technologien
+
+- Nuxt 3
+- TailwindCSS
+- TypeScript
+- Vite
+- OpenAI API
+
+## ⚙️ Projekt starten
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
