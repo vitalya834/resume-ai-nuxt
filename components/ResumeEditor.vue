@@ -1,75 +1,77 @@
 <template>
-    <div class="resume-editor">
-      <h2 class="text-xl font-bold mb-4">Резюме</h2>
-  
-      <textarea
-        v-model="profileText"
-        class="w-full h-40 p-2 border rounded"
-        placeholder="Введите ваш профиль"
-      ></textarea>
-  
-      <div class="mt-2 text-right">
-        <button
-          @click="showEnhancer = true"
-          class="px-3 py-1 bg-blue-600 text-white rounded text-sm"
-        >
-          Улучшить профиль
-        </button>
-      </div>
-  
-      <div class="mt-4">
-        <label class="block font-semibold mb-1">Навыки:</label>
-        <input
-          v-model="skillInput"
-          @keyup.enter="addSkill"
-          placeholder="Введите навык и нажмите Enter"
-          class="p-2 border rounded w-full"
-        />
-        <div class="flex flex-wrap mt-2 gap-2">
-          <span
-            v-for="(skill, index) in skills"
-            :key="index"
-            class="bg-blue-100 px-2 py-1 rounded-full text-sm"
-          >
-            {{ skill }}
-            <button @click="removeSkill(index)" class="ml-1 text-red-500">×</button>
-          </span>
-        </div>
-      </div>
-  
-      <!-- Модальное окно улучшения -->
-      <AIEnhancer
-        :visible="showEnhancer"
-        @close="showEnhancer = false"
-      />
+  <section class="resume-editor">
+    <h2 class="mb-4 text-xl font-bold">Lebenslauf</h2>
+
+    <textarea
+      v-model="profileText"
+      class="h-40 w-full rounded border p-2"
+      placeholder="Berufliches Profil eingeben"
+    />
+
+    <div class="mt-2 text-right">
+      <button
+        class="rounded bg-blue-600 px-3 py-1 text-sm text-white"
+        @click="showEnhancer = true"
+      >
+        Profil verbessern
+      </button>
     </div>
-  </template>
-  
-  <script setup>
-  import { ref } from 'vue'
-  import AIEnhancer from '~/components/AIEnhancer.vue'
-  
-  const profileText = ref('')
-  const skillInput = ref('')
-  const skills = ref([])
-  const showEnhancer = ref(false)
-  
-  function addSkill() {
-    if (skillInput.value.trim()) {
-      skills.value.push(skillInput.value.trim())
-      skillInput.value = ''
-    }
-  }
-  
-  function removeSkill(index) {
-    skills.value.splice(index, 1)
-  }
-  </script>
-  
-  <style scoped>
-  .resume-editor {
-    max-width: 800px;
-    margin: auto;
-  }
-  </style>
-  
+
+    <div class="mt-4">
+      <label class="mb-1 block font-semibold" for="skill-input">Kenntnisse</label>
+      <input
+        id="skill-input"
+        v-model="skillInput"
+        class="w-full rounded border p-2"
+        placeholder="Kenntnis eingeben und Enter drücken"
+        @keyup.enter="addSkill"
+      />
+      <div class="mt-2 flex flex-wrap gap-2">
+        <span
+          v-for="(skill, index) in skills"
+          :key="skill"
+          class="rounded-full bg-blue-100 px-2 py-1 text-sm"
+        >
+          {{ skill }}
+          <button
+            class="ml-1 text-red-600"
+            :aria-label="`${skill} entfernen`"
+            @click="removeSkill(index)"
+          >
+            ×
+          </button>
+        </span>
+      </div>
+    </div>
+
+    <AIEnhancer :visible="showEnhancer" @close="showEnhancer = false" />
+  </section>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const profileText = ref('')
+const skillInput = ref('')
+const skills = ref<string[]>([])
+const showEnhancer = ref(false)
+
+function addSkill() {
+  const skill = skillInput.value.trim()
+  if (!skill || skills.value.includes(skill)) return
+
+  skills.value.push(skill)
+  skillInput.value = ''
+}
+
+function removeSkill(index: number) {
+  skills.value.splice(index, 1)
+}
+</script>
+
+<style scoped>
+.resume-editor {
+  max-width: 800px;
+  margin: auto;
+}
+</style>
