@@ -3,6 +3,7 @@ node_modules/
 dist/
 .nitro/
 .nuxt/
+.output/
 output/
 *.log
 
@@ -17,3 +18,4 @@ Thumbs.db
 # Env
 .env
 .env.*
+!.env.example
